@@ -1,0 +1,20 @@
+[build-system]
+requires = ["poetry>=1.1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.scripts]
+myapp = "my_package.main:app"
+
+[tool.poetry]
+name = "my-package"
+version = "0.1.0"
+description = "Minimal Poetry example of CLI application (Typer) with Docker Multi-Stage builds"
+authors = ["Mario Gomez <magomar@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typer = "^0.3.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.0"
+pytest-cov = "^2.10.1"

@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  app:
+    build:
+        context: .
+        dockerfile: ./docker/Dockerfile
+    image: poetry-docker:0.1.0
+    command: bash
+
+  dev:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      target: development
+    image: poetry-docker:dev
+    volumes:
+      - .:/app
+    command: bash

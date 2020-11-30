@@ -1,0 +1,53 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="align" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="JupyterKernelInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="JupyterPackageInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="12">
+            <item index="0" class="java.lang.String" itemvalue="pysimplegui" />
+            <item index="1" class="java.lang.String" itemvalue="dlib" />
+            <item index="2" class="java.lang.String" itemvalue="pyperf" />
+            <item index="3" class="java.lang.String" itemvalue="bs4" />
+            <item index="4" class="java.lang.String" itemvalue="tinydb" />
+            <item index="5" class="java.lang.String" itemvalue="pymongo" />
+            <item index="6" class="java.lang.String" itemvalue="httpimport" />
+            <item index="7" class="java.lang.String" itemvalue="wget" />
+            <item index="8" class="java.lang.String" itemvalue="pillow" />
+            <item index="9" class="java.lang.String" itemvalue="black" />
+            <item index="10" class="java.lang.String" itemvalue="plotly" />
+            <item index="11" class="java.lang.String" itemvalue="notebook" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredNames">
+        <list>
+          <option value="id" />
+          <option value="format" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="domain.faces.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
