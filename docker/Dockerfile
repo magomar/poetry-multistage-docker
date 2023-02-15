@@ -6,7 +6,7 @@
 ######################### PYTHON-BASE #######################################
 # Provides python and libraries for building packages
 
-FROM python:3.9-slim as python-base
+FROM python:3.10-slim as python-base
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
     PYTHONUNBUFFERED=1 \
@@ -14,6 +14,7 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=1 \
     POETRY_HOME="/opt/poetry" \
+    POETRY_NO_INTERACTION=true \
     APP_PATH="/app" \
     VENV_PATH="/venv"
 
@@ -31,16 +32,15 @@ RUN apt-get update  && apt-get install --no-install-recommends -y \
         curl \
         build-essential
 
-# Install Poetry - respects $POETRY_VERSION & $POETRY_HOME
-ENV POETRY_VERSION=1.1.4
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+# Install last Poetry version, respects $POETRY_HOME
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Copy dependencies
 COPY ./poetry.lock ./pyproject.toml ./
 # Create virtual environment
 RUN python -m venv $VENV_PATH
 # Install runtime dependencies (--no-dev), but exclude the project itself (--no-root), which avoids editable mode
-RUN . $VENV_PATH/bin/activate && poetry install --no-dev --no-root --no-interaction
+RUN . $VENV_PATH/bin/activate && poetry install --only main --no-root
 
 ########################## DISTRIBUTION ########################################
 # Provides a built-package of our app (a `wheel`), ready for distribution
@@ -53,7 +53,7 @@ COPY --from=builder $VENV_PATH $VENV_PATH
 
 # Copy full project and build it (generate distribution files in /app/dist)
 COPY . .
-RUN . $VENV_PATH/bin/activate && poetry build --no-interaction
+RUN . $VENV_PATH/bin/activate && poetry build
 
 ######################### DEVELOPMENT #######################################
 # Provides a full development environment, with the project installed in editable mode
@@ -72,7 +72,7 @@ RUN chmod +x /entrypoint.sh
 
 # Copy full project and install it with development dependencies
 COPY . .
-RUN . $VENV_PATH/bin/activate && poetry install --no-interaction
+RUN . $VENV_PATH/bin/activate && poetry install
 
 ENTRYPOINT /entrypoint.sh $0 $@
 
